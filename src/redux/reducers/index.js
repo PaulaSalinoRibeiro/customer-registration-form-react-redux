@@ -1,7 +1,4 @@
-const INIT_STATE_LOGIN = {
-  name: '',
-  password: ''
-}
+import { REGISTER, CLIENTS } from '../actions';
 
 const INIT_STATE_REGISTER = {
   name: '',
@@ -10,14 +7,7 @@ const INIT_STATE_REGISTER = {
 }
 
 const INIT_STATE_CLIENTES = {
-  clients: []
-}
-
-export const loginReducer = (state = INIT_STATE_LOGIN, action) => {
-  switch(action.type) {
-    default:
-      return state
-  }
+  clients: [{name: '', email: '', age: ''}]
 }
 
 export const registerReducer = (state = INIT_STATE_REGISTER, action) => {
