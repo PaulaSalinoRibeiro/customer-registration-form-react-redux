@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { actLogin } from '../redux/actions';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   state = {
@@ -11,7 +14,8 @@ class Login extends Component {
   }
 
   handleClick() {
-    const { history } = this.props;
+    const { history, sendLogin } = this.props;
+    sendLogin(this.state);
     history.push('/clientes')
   }
 
@@ -63,4 +67,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  sendLogin: (state) => dispatch(actLogin(state))
+})
+
+Login.propTypes = {
+  sendLogin: PropTypes.func.isRequired,
+}
+
+export default connect(null, mapDispatchToProps)(Login);

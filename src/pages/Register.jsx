@@ -14,13 +14,14 @@ class Register extends Component {
     this.setState({ [name]: value } )
   }
 
-  handleClick = () => {
+  handleClikc = () => {
     const { sendRegister } = this.props;
-    sendRegister(this.state);
+    sendRegister(this.state)
   }
-
+  
   render() {
     const { name, age, email } = this.state;
+    const { history } = this.props;
     return (
       <>
       <fieldset>
@@ -62,9 +63,16 @@ class Register extends Component {
 
         <button
           type="button"
-          onClick={ () => this.handleClick() }
+          onClick={ () => this.handleClikc()}
         >
-          Enviar
+          Gerar cadastro
+        </button>
+
+        <button
+          type="button"
+          onClick={ () => history.push('/clientes')}
+        >
+          Clientes Cadastrados
         </button>
       </fieldset>
       </>
@@ -72,8 +80,8 @@ class Register extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendRegister: (state) => dispatch(actClients(state))
+const mapDispatchToProps = dispatch => ({
+  sendRegister: (value) => dispatch(actClients(value))
 })
 
 Register.propTypes = {

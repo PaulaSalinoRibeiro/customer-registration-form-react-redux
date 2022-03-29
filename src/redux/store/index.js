@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import clientsReducer from '../reducers';
+import { loginReducer, clientsReducer } from '../reducers';
 
-const rootReducers = combineReducers({ clientsReducer });
+const rootReducers = combineReducers({ clientsReducer, loginReducer });
 
 const store = createStore(rootReducers, composeWithDevTools());
 
