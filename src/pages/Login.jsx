@@ -1,10 +1,7 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { actLogin } from '../redux/actions';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 class Login extends Component {
-  state ={
+  state = {
     email: '',
     password: '',
   }
@@ -13,14 +10,9 @@ class Login extends Component {
     this.setState( { [name]: value } );
   }
 
-  handleClick = (event) => {
-    event.preventDefault()
-    const { sendLogin } = this.props;
-    sendLogin(this.state);
-    this.setState({
-      email: '',
-      password: '',
-    })
+  handleClick() {
+    const { history } = this.props;
+    history.push('/clientes')
   }
 
   render() {
@@ -37,7 +29,7 @@ class Login extends Component {
           <input
             id="email"
             name="email"
-            value={email}
+            value={ email }
             onChange={ this.handleChange }
             type="text"
             required
@@ -50,7 +42,7 @@ class Login extends Component {
             <input
               id="senha"
               name="password"
-              value={password}
+              value={ password }
               onChange={ this.handleChange }
               type="password"
               required
@@ -58,25 +50,17 @@ class Login extends Component {
           </label>
 
           <button
-            type="submit"
-            onClick={ this.handleClick }
+            type="button"
+            onClick={ () => this.handleClick() }
           >
             Enviar
           </button>
 
         </fieldset>
-      
+
       </>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendLogin: (state) => dispatch(actLogin(state))
-})
-
-Login.propTypes = {
-  sendLogin: PropTypes.func,
-}.isRequired;
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

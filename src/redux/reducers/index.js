@@ -1,25 +1,26 @@
-import { REGISTER, CLIENTS } from '../actions';
-
-const INIT_STATE_REGISTER = {
-  name: '',
-  age: '',
-  email: ''
-}
+import { ADD_CLIENTS } from '../actions';
 
 const INIT_STATE_CLIENTES = {
-  clients: [{name: '', email: '', age: ''}]
+  clients: [
+    {
+      id: (Math.random() * 1000),
+      name: '',
+      email: '',
+      age: '',
+    }
+  ]
 }
 
-export const registerReducer = (state = INIT_STATE_REGISTER, action) => {
+const clientsReducer = (state = INIT_STATE_CLIENTES, action) => {
   switch(action.type) {
+    case ADD_CLIENTS:
+      return ({
+        ...state,
+        clientes: [ ...state, ...action.payload ]
+      })
     default:
       return state
   }
 }
 
-export const clientsReducer = (state = INIT_STATE_CLIENTES, action) => {
-  switch(action.type) {
-    default:
-      return state
-  }
-}
+export default clientsReducer;
